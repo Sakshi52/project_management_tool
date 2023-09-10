@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<body class="A" >
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            
+        <div class="row mt-5 mx-auto shadow-lg bg-body-tertiary" style="width:840px;height:440px;border-radius: 20px;">
+          
+            <div class="col-md-6 mt-5 mx-auto">
+              <h4 class="mb-3 text-center"><b>Create User</b></h4>
+                <div class="mb-3 row">
+                    <label for="1" class="col-sm-2 col-form-label"><b>Name:  </b></label>
+                    <div class="col-sm-10">
+                      <input type="text" name="uname" class="form-control border border-dark p-2 mb-2 border-opacity-50" id="1" >
+                    </div>
+                  </div>
+
+                  <div class="mb-3 row">
+                    <label for="2" class="col-sm-2 col-form-label"><b>Profile picture:  </b></label>
+                    <div class="col-sm-10">
+                      <input type="file" name="img" value="Upload Image" class="form-control border border-dark p-2 mb-2 border-opacity-50" id="2">
+                    </div>
+                  </div>
+                   
+                  <div class="mb-3 row">
+                    <label for="3" class="col-sm-2 col-form-label"><b>Email:  </b></label>
+                    <div class="col-sm-10">
+                      <input type="email" name="rmail" class="form-control border border-dark p-2 mb-2 border-opacity-50" id="3" >
+                    </div>
+                  </div>
+
+                  <div class="mb-3 row">
+                    <label for="4" class="col-sm-2 col-form-label"><b>Mobile:  </b></label>
+                    <div class="col-sm-10">
+                      <input type="number" name="mob" class="form-control border border-dark p-2 mb-2 border-opacity-50" id="4" >
+                    </div>
+                  </div>
+
+                  <div class="mb-3 row">
+                    <label for="5" class="col-sm-2 col-form-label"><b>Qualification:  </b></label>
+                    <div class="col-sm-10">
+                      <input type="text" name="quali" class="form-control border border-dark p-2 mb-2 border-opacity-50" id="5" >
+                    </div>
+                  </div>
+
+                  <div class="mb-3 row">
+                    <label for="6" class="col-sm-2 col-form-label"><b>Designation:  </b></label>
+                    <div class="col-sm-10">
+                      <input type="text" name="desig" class="form-control border border-dark p-2 mb-2 border-opacity-50" id="6">
+                    </div>
+                  </div>
+
+                  <!-- <div class="mb-3 row">
+                    <label for="msg" class="col-sm-2 col-form-label"><b>Message:  </b></label>
+                    <div class="col-sm-10">
+                      <textarea class="form-control border border-dark p-2 mb-2 border-opacity-50" name="msg" id="floatingTextarea" placeholder="Enter Message"></textarea>
+                      <input type="text" name="msg" class="form-control border border-dark p-2 mb-2 border-opacity-50" id="msg" placeholder="Enter Message">
+                    </div>
+                  </div> -->
+                  
+                  <div class="button mb-3 mx-2" >
+                    <div class="col-sm-7 mx-auto">
+                      <button type="submit" class="btn btn-info mx-auto btn-lg"><b>Create</b></button>
+                  </div>
+                </div>
+                  <!-- <button class="btn btn-info mx-auto btn-lg"><b>Send Mail</b></button> -->
+
+            </div>
+        </div>
+      
+    </div>
+</form>
+      {% if success %}
+      <div class="alert alert-primary text-center mx-auto mt-5" role="alert" style="width:217px">
+        {{success}}
+      </div>
+      {% endif %}
+</body>
+{% endblock 'main' %}

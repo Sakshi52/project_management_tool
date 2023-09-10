@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+<div class="row mx-5  mt-2">
+    {% if user.is_authenticated %}
+        <div class="border border-warning-subtle shadow mt-2 col-md-4">
+        
+            <h4 class="text-center">Projects</h4>
+            <h5 class="text-center">{{count_todos}}</h5>
+      
+       </div>
+       <div class="border border-warning-subtle shadow mt-2 col-md-4">
+            <h4 class="text-center">Tasks</h4>
+            <h5 class="text-center">{{count_completed_todo}}</h5>
+        </div>
+            <div class="border border-warning-subtle shadow mt-2 col-md-4">
+            <h4 class="text-center">Users</h4>
+            <h5 class="text-center">{{uncompleted}}</h5>
+         </div>
+    {% else %}
+    <div class="border border-warning-subtle shadow mt-2 col-md-4">
+        
+        <h4 class="text-center">Projects</h4>
+        <h5 class="text-center">0</h5>
+  
+   </div>
+   <div class="border border-warning-subtle shadow mt-2 col-md-4">
+        <h4 class="text-center">Tasks</h4>
+        <h5 class="text-center">0</h5>
+    </div>
+        <div class="border border-warning-subtle shadow mt-2 col-md-4">
+        <h4 class="text-center">Users</h4>
+        <h5 class="text-center">0</h5>
+     </div>
+     {% endif %}
+        
+    
+</div>
+<div class="container-fluid">
+<div class="row ">
+    <div class="col-md-3 mt-5 border border-warning-subtle shadow p-3 ">
+
+        <h3 class="bg-warning text-dark p-2 text-center">Filters</h3>
+        <hr>
+        <h4>Type</h4>
+      <ul class="nav flex-column">
+  
+         <li class="nav-item">
+            <a class="nav-link text-dark" href="/type/0">All</a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/type/1">Normal</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/type/2">Urgent</a>
+        </li>
+         </ul>
+         
+         <h4>Status</h4>
+         <ul class="nav flex-column">
+  
+            <li class="nav-item">
+               <a class="nav-link text-dark" href="/acti/2">All</a>
+             </li>
+           <li class="nav-item">
+               <a class="nav-link text-dark" href="/acti/1">Completed</a>
+           </li>
+           <li class="nav-item">
+               <a class="nav-link text-dark" href="/acti/0">Pending</a>
+           </li>
+            </ul>
+
+    </div>
+    
+    <div class="col-md-6 mt-5"> 
+        <!-- <div class="row">
+            <div class="col-md-6"> -->
+                {% if user.is_authenticated %}
+        <span><h3>Assign Projects? <a href="/addtask"><button class="btn btn-outline-warning text-dark">Add Task</button></a></h3> </span>
+        
+    <!-- </div>
+    </div> -->
+     
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    
+                    <h3 class="bg-warning text-dark text-center p-2">View List</h3>
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Task</th>
+                            <th>Projects</th>
+                            <th>Priority</th>
+                            <th>Assigned to</th>
+                            <th>status</th>
+                        </tr>
+                       
+                        <tr>
+                           {% for x in tasklist %}
+                        
+                           <tr>
+                           
+                            {% if x.status == 1 %}
+                            
+                                <td><b><del>{{x.task}}</del></b></td>
+                            
+                            {% else %}
+                            <td>{{x.task}}</td>
+                            {% endif %}
+                            
+                            {% if x.type == 1 %}
+                            <td>Personal</td>
+                            {% else %}
+                            <td>Office Work</td>
+                            {% endif %}
+                            <td>{{x.Duedate}}</td>
+                           
+                            {% if x.status == 1 %}
+                            <td><b>Completed</b></td>
+                            {% else %}
+                            <td class="text-danger"><b>Pending</b></td>
+                            {% endif %}
+    
+                            <td><a href="/edittask/{{x.id}}"><button class="btn btn-outline-secondary text-dark">Edit</button></a></td>
+                            <td><a href="/deltask/{{x.id}}"><button class="btn btn-outline-warning text-dark">Delete</button></a></td>
+                           </tr>
+                             
+                           {% endfor %}
+                           
+                        </tr>
+                    </table>
+                    <a href="/delall"><button class="btn btn-outline-warning text-dark">Delete All</button></a>
+                    
+                    
+                    {% if error %}
+                    <div class="alert alert-primary text-center" role="alert">
+                      {{error}}
+                    </div>
+                    {% endif %}
+                   
+
+                </div>
+            </div>
+    
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    
+                    <h3 class="bg-warning text-dark text-center p-2">Project List</h3>
+                    <table class="table table-hover">
+                        <td>
+                            <th>Project Management</th>
+                            <th>Technokraft</th>
+                            <th>Due date</th>
+                        </td>
+                        
+                        </table>
+                        </div>
+                        </div>
+     </div>
+     {% else %}
+     
+     <span><h3>Assign Projects Here  <a href="/addtask"><button class="btn btn-outline-warning text-dark">Add Task</button></a></h3> </span>
+     <h4>No Task Yet</h4>
+     {% endif %}
+
+     
+</div>
+
+</div>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+         <script src="{% static 'js/popper.js' %}"></script>
+</body>
+</html>
+{% endblock 'main' %}
+
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body> 
+          {% include 'header.html' %}
+
+          <div class="container">
+            <div class="row">
+            <div class="col-md-4">{% include 'aside.html' %}</div>
+            <div class="col-md-6"> 
+                <a href="/addtask"><button class="btn btn-danger">Add Task</button></a>
+                {% include 'list.html' %} </div>
+            </div>
+          </div>
+
+          <script src="{% static 'js/bootstrap.min.js' %}"></script>
+         <script src="{% static 'js/popper.js' %}"></script>
+</body>
+</html> -->

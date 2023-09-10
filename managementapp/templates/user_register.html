@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto mt-5">
+            <h3 class="text mx-auto text-center mt-5 text-info-emphasis">Create an Account Here</h3>
+            <form method="POST" action="">
+                <div class="row mt-5 mx-auto shadow-lg bg-body-tertiary rounded" style="width:716px">
+                {% csrf_token %}
+                <table>
+                {% for x in userform %}
+                   <tr>
+                    <td>{{x.label_tag}}</td>
+                    <td>{{x}}</td>
+                   </tr>
+                {% endfor %}
+                </div>
+                
+                    
+                
+
+                <!-- <tr>
+                    <td>
+                        {% if success %}
+                        <span class="text-success">{{success}}</span>
+                        <a href="/login">Login</a>
+                        {% endif %}
+                    </td>
+                </tr> -->
+
+
+            </table>
+            </form>
+            <div class="text-center mt-2">
+                <input type="submit" class="btn btn-outline-warning mx-auto text-dark" value="Register">
+               </div>
+
+               {% if success %}
+                        <span class="text-success">{{success}}</span>
+                        <a href="/login">Login</a>
+                        {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock 'main' %}

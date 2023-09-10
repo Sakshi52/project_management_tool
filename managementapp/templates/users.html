@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+<div class="col-md-9">
+<div class="row mt-3">
+
+  {% for x in displayuser %}
+    <div class="col-md-3 mb-4">
+        <div class="card" style="width:100%;">
+            <img src="{{x.pimage.url}}" class="card-img-top" alt="..." height="200px">
+            <div class="card-body">
+              <h5 class="card-title">{{x.name}}</h5>
+              <h6 class="card-title">{{x.email}}</h6>
+              <h6 class="card-title">{{x.mobile}}</h6>
+              <h6 class="card-title">{{x.designation}}</h6>
+              <h6 class="card-title">{{x.qualification}}</h6>
+              <!-- <h6 class="card-title">{{x.project}}</h6> -->
+              <!-- {% if x.cat == 1 %}
+                   <p class="card-text">Mobile</p>
+              {% elif x.cat == 2 %}
+                   <p class="card-text">Cloths</p>
+              {% elif x.cat == 3 %}
+                   <p class="card-text">Shoes</p>
+              {% endif %}
+
+              <p>{{x.price}}</p> -->
+              <!-- <a href="/pdetails/{{x.id}}" class="btn btn-primary">See details</a> -->
+            </div>
+          </div><!--Card ends-->
+        </div><!--col ends-->
+  {% endfor %}
+
+</div><!--row ends-->
+</div>
+</div>
+{% endblock 'main' %}

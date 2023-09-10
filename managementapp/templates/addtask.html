@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+
+
+    <div class="container">
+        
+        <div class="row mx-auto mt-5 shadow-lg bg-body-tertiary rounded" style="width:689px;height:520px">
+            <div class="col-md-9 mx-auto">
+              <form method="POST" action="">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="1" class="form-label"><strong>Task:</strong></label>
+                    <input type="text" class="form-control" name="ttitle" id="1" placeholder="Enter Your Task" required>
+                </div>
+
+
+                <div class="mb-3">
+                    <label><strong>Select Category:</strong></label>
+                    <select class="form-select" name="cate" aria-label="Default select example">
+                        <option value="1">Normal</option>
+                        <option value="2">Urgent</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="3" class="form-label"><strong>Duedate:</strong></label>
+                    <input type="date" class="form-control" name="stime" id="3" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label><strong>Select Activity:</strong></label>
+                    <select class="form-select" name="activity" aria-label="Default select example">
+                        <option value="1">Completed</option>
+                        <option value="0">Pending</option>
+                    </select>
+                </div>
+
+                <div class="button mb-3" style="width:1701px">
+                    <div class="col-sm-9 mx-auto">
+                    <button type="submit" class="btn btn-outline-warning text-dark">Add Task</button>
+                    </div>
+                  </div>
+
+                
+
+              </form>
+            </div>
+
+            
+        </div>
+    </div>
+    </body>
+    </html>
+    {% endblock 'main' %}
